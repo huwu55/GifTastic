@@ -1,0 +1,33 @@
+div{
+    float: left;
+    margin: 10px;
+}
+
+.topics, .search{
+    display: block;
+    clear: both;
+}
+
+button {
+    margin: 5px;
+}
+
+#gifresults{
+    text-align: center;
+}
+
+img{
+    border-radius: 20px;
+}
+
+.gifDiv{
+    padding: 10px;
+    border: solid;
+    border-color: darkgray;
+    border-width: 2px;
+    border-radius: 20px;
+}
+
+p{
+    margin: 0px;
+}
