@@ -1,8 +1,9 @@
 $(document).ready(function(){
-    var topics = ["harry potter", "hermione granger", "ron weasley", "sorting hat"];
+    var topics = ["funny cats", "harry potter", "hermione granger", "ron weasley", "sorting hat", "hunger games"];
     var api = "&api_key=17ctMBVTuXiYLDebhCDpfFahAxvGFZCK";
     var queryURL; 
 
+    //push non-existing topic to the topics array
     function pushTopic(el){
         var foundTopic = false;
         for(var i = 0; i < topics.length; i++){
@@ -21,6 +22,7 @@ $(document).ready(function(){
         }
     }
 
+    //list all topics as buttons when the page loaded
     function showTopics(){
         for(var i = 0; i < topics.length; i++){
             var newTopic = $("<button>");
@@ -31,6 +33,8 @@ $(document).ready(function(){
         }
     }
 
+    //list 10 static gifs of the chosen topic on the page
+    //click on each gif to swich its status from still to animated or from animated to still
     function listGifs(topic){
         queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + api + "&limit=10";
         console.log(queryURL); 
@@ -40,11 +44,8 @@ $(document).ready(function(){
             method: "GET"
         })
         .then(function(response){
-            console.log(response);
-            //var res = response.data;
-            //console.log(res.length);
+            //console.log(response);
             var results = response.data;
-            //console.log(results.length);
             var gifResults = $("#gifresults");
             for(var i = 0; i < results.length; i++){
                 var gifDiv = $("<div>");
@@ -82,14 +83,18 @@ $(document).ready(function(){
         });
     }
 
+    // start
+
     showTopics();
 
+    //list gifs if the user clicks on a topic or a search button
     $("button").on("click", function(){
         var parentClass = $(this).parent().attr("class");
 
         if (parentClass === "search"){
             var input = $("#search").val().trim();
 
+            //if the search box is empty, do nothing
             if(input === "");
             else{
                 pushTopic(input);
